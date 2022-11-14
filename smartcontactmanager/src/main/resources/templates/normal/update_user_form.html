@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Home Page</title>
+<!-- 	<link rel="stylesheet" th:href="@{/css/style.css}" /> -->
+</head>
+<body>
+	<section>
+
+		<div class="card" style="margin: 0 2%">
+
+			<div class="card-body">
+
+				<h1 class="text-center">Update your Information</h1>
+
+				<div class="container-fluid mt-1">
+
+					<div class="row">
+
+						<div class="col-md-8 offset-md-2">
+
+							<form th:action="@{'/user/process-user-update/'+${user.id}}"
+								th:object="${user}" enctype="multipart/form-data" method="post"
+								class="mt-2">
+
+								<!-- First name -->
+
+								<div class="input-group">
+
+									<input type="text" name="name" required th:value="${user.name}"
+										placeholder="Enter Name Here" class="form-control " />
+
+								</div>
+
+
+
+
+
+								<!-- Email field -->
+
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+										<div class="input-group-text" style="height: 2.4rem">@</div>
+									</div>
+
+									<input type="email" name="email" placeholder="Enter Email Here"
+										th:value="${user.email}" required class="form-control " />
+
+								</div>
+
+								<!-- Contact Description  -->
+
+								<div class="form-group mt-3">
+
+									<textarea name="about" rows="10" class="form-control"
+										th:utext="${user.about}" id="mytextarea"
+										placeholder="Enter Your Description Here"></textarea>
+
+								</div>
+
+								<!-- Custom-file -->
+
+								<div class="container text-center">
+									<img class="my_profile_picture mt-4"
+										th:src="@{'/img/'+${user.imageUrl}}"
+										style="width: 12rem; height: 12rem;" />
+								</div>
+
+								<p class="text-secondary">Choose New Profile Photo</p>
+
+								<div class="custom-file mt-3">
+									<input type="file" name="profileImage" />
+								</div>
+
+								<div class="container text-center">
+									<button class="btn bg-primary text-white">Update User</button>
+								</div>
+
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<script
+			src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"
+			referrerpolicy="origin"></script>
+		<script>
+      tinymce.init({
+        selector: '#mytextarea',
+        plugins: [
+          'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+          'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+          'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+        ],
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+          'alignleft aligncenter alignright alignjustify | ' +
+          'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+      });
+    </script>
+
+	</section>
+</body>
+</html>

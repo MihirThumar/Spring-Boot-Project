@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>User DashBoard</title>
+</head>
+<body>
+
+	<section>
+
+		<div class="card" style="margin: 0 2%">
+
+			<div class="card-body">
+
+				<h1 class="text-center">Update your Contact</h1>
+
+				<div class="container-fluid mt-1">
+
+					<div class="row">
+
+						<div class="col-md-8 offset-md-2">
+
+							<form th:action="@{'/user/process-update/'+${contact.cId}}" th:object="${contact}"
+								enctype="multipart/form-data" method="post" class="mt-2">
+
+								<!-- First name -->
+
+								<div class="input-group">
+
+									<div class="input-group-prepend">
+										<div class="input-group-text" style="height: 2.4rem">
+											<i class="fa fa-plus"></i>
+										</div>
+									</div>
+
+									<input type="text" name="name" required th:value="${contact.name}"
+										placeholder="Enter Name Here" class="form-control " />
+
+								</div>
+
+								<!-- Second name -->
+
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+										<div class="input-group-text" style="height: 2.4rem">
+											<i class="fas fa-user-alt"></i>
+										</div>
+									</div>
+
+									<input type="text" name="secondName" required th:value="${contact.secondName}"
+										placeholder="Enter Nick Name Here" class="form-control " />
+
+								</div>
+
+								<!-- phone field -->
+
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+										<div class="input-group-text" style="height: 2.4rem">
+											<i class="fas fa-phone"></i>
+										</div>
+									</div>
+
+									<input type="number" name="phone" required min="5" th:value="${contact.phone}"
+										placeholder="Enter Phone number Here" class="form-control " />
+
+								</div>
+
+								<!-- Email field -->
+
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+										<div class="input-group-text" style="height: 2.4rem">@</div>
+									</div>
+
+									<input type="email" name="email" placeholder="Enter Email Here"
+									  th:value="${contact.email}"	required class="form-control " />
+
+								</div>
+
+								<!-- Work field -->
+
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+										<div class="input-group-text" style="height: 2.4rem">
+											<i class="fa fa-briefcase"></i>
+										</div>
+									</div>
+
+									<input type="text" name="work" required th:value="${contact.work}"
+										placeholder="Enter your Work Here" class="form-control " />
+
+								</div>
+
+								<!-- Contact Description  -->
+
+								<div class="form-group mt-3">
+
+									<textarea name="description" rows="10" class="form-control" th:utext="${contact.description}"
+										id="mytextarea" placeholder="Enter Contact Description Here"></textarea>
+
+								</div>
+
+								<!-- Custom-file -->
+								
+								<div class="container text-center">
+									<img class="my_profile_picture mt-4" th:src="@{'/img/'+${contact.image}}" 
+									style="width:12rem;height:12rem;" />
+								</div>
+								
+								<p class="text-secondary">Choose New Profile Photo</p>
+								
+								<div class="custom-file mt-3">
+									<input type="file" name="profileImage" />
+								</div>
+
+								<div class="container text-center">
+									<button class="btn bg-primary text-white">Save Contact</button>
+								</div>
+
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		
+		  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+     <script>
+      tinymce.init({
+        selector: '#mytextarea',
+        plugins: [
+          'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+          'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+          'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+        ],
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+          'alignleft aligncenter alignright alignjustify | ' +
+          'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+      });
+    </script>
+
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Error Page</title>
+</head>
+<body>
+	<section>
+		<div class="container text-center mt-5">
+		<form action="/user/index">
+			<h2>Sorry Something went wrong !!</h2>
+			<h3>Try sometime after</h3>
+			<button class="btn bg-primary text-white">
+			TryAgain
+			</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
